@@ -68,10 +68,13 @@ class Neo4jPDOStatement implements \Iterator
                 "includeStats" => true )));
         }
 
-        $this->columns = $result['results'][0]['columns'];
-        $this->rows = $result['results'][0]['data'];
-        $this->rowCount = count($this->rows);
-        $this->cursor = 0;
+        if(isset($result['results'][0]))
+        {
+            $this->columns = $result['results'][0]['columns'];
+            $this->rows = $result['results'][0]['data'];
+            $this->rowCount = count($this->rows);
+            $this->cursor = 0;
+        }
     }
 
     public function fetch ($fetchStyle=PDO::ATTR_DEFAULT_FETCH_MODE, 
