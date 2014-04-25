@@ -195,6 +195,7 @@ class Neo4jPDOStatement implements \Iterator
         for($i=0;$i<count($this->columns);$i++)
         {
             $projection[$this->columns[$i]] = $row[$i];
+            $projection[$i] = $row[$i];
         }
         return $projection;
     }

@@ -66,11 +66,11 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
 
         // When
         $res = $pdo->query(
-            'MATCH p=(n:Types {name:"Jake"})-->() RETURN 1, "str", [1,2], n, p')->fetchAll();
+            'MATCH p=(n:Types {name:"Jake"})-->() RETURN 1 as num, "str", [1,2], n, p')->fetchAll();
         $res = $res[0];
 
         // Then 
-        $this->assertEquals(1, $res['1']);
+        $this->assertEquals(1, $res['num']);
         $this->assertEquals('str', $res['"str"']);
         $this->assertEquals(array(1,2), $res['[1,2]']);
         $this->assertEquals('00000', $pdo->errorCode());
