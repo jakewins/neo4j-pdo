@@ -4,9 +4,6 @@ namespace Neo4j;
 
 use \PDO as PDO;
 
-include_once 'vanilla/Neo4jPDO.php';
-include_once 'vanilla/Neo4jPDOStatement.php';
-
 class Neo4jPDOStatement implements \Iterator
 {
     
