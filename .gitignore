@@ -1,0 +1,8 @@
+build
+dist
+*.egg-info
+.DS_store
+paver-minilib.zip
+__pycache__
+*.pyc
+*.swp
