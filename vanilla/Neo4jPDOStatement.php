@@ -18,6 +18,8 @@ class Neo4jPDOStatement implements \Iterator
     private $cursor = -1;
     private $fetchMode = PDO::FETCH_BOTH;
 
+    private $boundParams = array();
+
     public function __construct($queryString, $session) 
     {
         $this->queryString = $queryString;
@@ -31,9 +33,9 @@ class Neo4jPDOStatement implements \Iterator
     }
 
     public function bindParam ( $parameter, &$variable, $data_type=PDO::PARAM_STR, 
-                                $length=1, $driver_options=null) 
+                                $length=null, $driver_options=null) 
     {
-
+        $this->boundParams[$parameter] = &$variable;
     }
 
     public function bindValue ( $parameter, $value, $data_type=PDO::PARAM_STR ) 
@@ -48,18 +50,25 @@ class Neo4jPDOStatement implements \Iterator
 
     public function execute ($params=null) 
     {
-        if($params == null)
+        if($params != null)
         {
             $result = $this->session->exec(array(array( 
                 "statement" => $this->queryString,  
+                "parameters" => $params,
+                "includeStats" => true )));   
+        }
+        else if(count($this->boundParams) > 0)
+        {
+            $result = $this->session->exec(array(array( 
+                "statement" => $this->queryString,  
+                "parameters" => $this->boundParams,
                 "includeStats" => true )));
         } 
         else
         {
             $result = $this->session->exec(array(array( 
                 "statement" => $this->queryString,  
-                "parameters" => $params,
-                "includeStats" => true )));   
+                "includeStats" => true )));
         }
 
         $this->columns = $result['results'][0]['columns'];

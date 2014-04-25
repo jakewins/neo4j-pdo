@@ -59,7 +59,10 @@ class Neo4jPDO
         return $this->session->errorInfo();
     }
 
-    public function inTransaction () {}
+    public function inTransaction () 
+    {
+        return $this->session->inTransaction();
+    }
     
     public function lastInsertId ($name = NULL) {}
 
@@ -125,6 +128,11 @@ class Session
     public function exec( $statements ) 
     {
         return $this->POST( $this->txUrl, array("statements" => $statements ));
+    }
+
+    public function inTransaction() 
+    {
+        return $this->inTransaction;
     }
 
     public function errorCode() 

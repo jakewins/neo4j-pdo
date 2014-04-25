@@ -38,6 +38,26 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('00000', $pdo->errorCode());
     }
 
+    public function testBindParams()
+    {
+        // Given
+        $pdo = new Neo4jPDO("http://localhost:7474");
+        $pdo->exec('MERGE (n:Prepare {a:12})');
+
+        $param = 12;
+        $stmt = $pdo->prepare('MATCH (n) WHERE n.a={p} RETURN n');
+        
+        // When
+        $stmt->bindParam('p', $param);
+
+        // Then
+        $stmt->execute();
+        $this->assertEquals(1, $stmt->rowCount());
+        $param = 15;
+        $stmt->execute();
+        $this->assertEquals(0, $stmt->rowCount());
+    }
+
     public function testTypes()
     {
         // Given
