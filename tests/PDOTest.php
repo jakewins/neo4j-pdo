@@ -2,9 +2,6 @@
 
 namespace Neo4j\Tests;
 
-include_once 'vanilla/Neo4jPDO.php';
-include_once 'vanilla/Neo4jPDOStatement.php';
-
 use Neo4j\Neo4jPDO;
 
 class PDOTest extends \PHPUnit_Framework_TestCase

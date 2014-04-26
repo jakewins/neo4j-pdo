@@ -8,10 +8,14 @@ you need to use a special constructor to create your PDO connection.
 PHP extensions to register the driver with PDO in HHVM and Zend VM are planned
 future work.
 
+## Installation
+
+Neo4jPDO uses Composer, please checkout the [composer website](http://www.getcomposer.org) for more information.
+
 ## Minimum Viable Snippet
 
-    include_once 'vanilla/Neo4jPDO.php';
-    include_once 'vanilla/Neo4jPDOStatement.php';
+    // Include dependencies installed with composer
+    require 'vendor/autoload.php';
 
     $conn = new \Neo4j\Neo4jPDO("http://localhost:7474");
     

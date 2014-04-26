@@ -6,3 +6,4 @@ paver-minilib.zip
 __pycache__
 *.pyc
 *.swp
+vendor

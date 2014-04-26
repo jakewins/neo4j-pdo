@@ -1,0 +1,14 @@
+{
+    "name": "neo4j/pdo",
+    "license": "MIT",
+    "require": {
+        "php": "~5.3",
+        "lib-curl": "*",
+        "ext-PDO": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Neo4j\\": "vanilla/"
+        }
+    }
+}
