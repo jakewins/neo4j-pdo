@@ -14,12 +14,11 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
 
         // When
         $count = 0;
-        foreach($pdo->query('MATCH (n:ReadStmt {name:"Jake"}) RETURN count(*)') as $row) 
-        {
+        foreach ($pdo->query('MATCH (n:ReadStmt {name:"Jake"}) RETURN count(*)') as $row) {
             $count = $row['count(*)'];
         }
 
-        // Then 
+        // Then
         $this->assertEquals(1, $count);
         $this->assertEquals('00000', $pdo->errorCode());
     }
@@ -33,7 +32,7 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
         // When
         $column = $pdo->query('MATCH (n:ReadStmt {name:"Jake"}) RETURN count(*)')->fetchColumn(0);
 
-        // Then 
+        // Then
         $this->assertEquals(array(1), $column);
         $this->assertEquals('00000', $pdo->errorCode());
     }
@@ -46,7 +45,7 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
 
         $param = 12;
         $stmt = $pdo->prepare('MATCH (n) WHERE n.a={p} RETURN n');
-        
+
         // When
         $stmt->bindParam('p', $param);
 
@@ -66,10 +65,11 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
 
         // When
         $res = $pdo->query(
-            'MATCH p=(n:Types {name:"Jake"})-->() RETURN 1 as num, "str", [1,2], n, p')->fetchAll();
+            'MATCH p=(n:Types {name:"Jake"})-->() RETURN 1 as num, "str", [1,2], n, p'
+        )->fetchAll();
         $res = $res[0];
 
-        // Then 
+        // Then
         $this->assertEquals(1, $res['num']);
         $this->assertEquals('str', $res['"str"']);
         $this->assertEquals(array(1,2), $res['[1,2]']);
@@ -84,7 +84,7 @@ class PDOStatementTest extends \PHPUnit_Framework_TestCase
         // When
         $stmt = $pdo->query('nonsense');
 
-        // Then 
+        // Then
         $this->assertEquals("Neo.ClientError.Statement.InvalidSyntax", $stmt->errorCode());
     }
 }
