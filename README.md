@@ -1,4 +1,5 @@
 # Neo4j PDO
+[![Build Status](https://travis-ci.org/jakewins/neo4j-pdo.svg?branch=master)](https://travis-ci.org/jakewins/neo4j-pdo)
 
 This is a PHP Data Objects driver for the Neo4j graph database, it allows you to 
 connect to a Neo4j server from PHP using the standard PDO API.
