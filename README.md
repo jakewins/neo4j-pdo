@@ -12,6 +12,12 @@ future work.
 
 Neo4jPDO uses Composer, please checkout the [composer website](http://www.getcomposer.org) for more information.
 
+To use Neo4j/PDO in your project, simply add it as a composer dependency:
+
+    "require": {
+        "neo4j/pdo": "dev-master"
+    }
+
 ## Minimum Viable Snippet
 
     // Include dependencies installed with composer
