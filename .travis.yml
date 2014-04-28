@@ -6,3 +6,7 @@ php:
 
 install: 
   - composer install
+  - mkdir build
+  - wget -O build/neo4j.tar.gz "http://download.neo4j.org/artifact?edition=community&version=2.0.1&distribution=tarball"
+  - tar -C build/ -xvf build/neo4j.tar.gz
+  - build/neo4j-community-2.0.1/bin/neo4j start
